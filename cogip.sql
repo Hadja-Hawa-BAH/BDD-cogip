@@ -620,6 +620,16 @@ ELSE
 end; 
 $$;
 
+-- Déclencheur
+create trigger after_item_audit_changes after
+insert
+    or
+delete
+    or
+update
+    on
+    public.item for each row execute function item_audit_insert_delete_update()
+
 -- test
 INSERT INTO public.item (item_code,"name",stock_alert,stock,yearly_consumption,unit)
 	VALUES ('60','items1',57,90,34,'unite');
