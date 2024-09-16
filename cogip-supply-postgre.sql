@@ -196,6 +196,18 @@ CREATE TABLE public.sale_offer (
 );
 
 
+CREATE TABLE public.user (
+    id serial primary key,
+    email varchar(300) not null,
+    last_login timestamp not null,
+    password varchar(250) not null,
+    role varchar(20) not null check(role in ('MAIN_ADMIN', 'ADMIN', 'COMMON')),
+    connexion_attempt int default 0,
+    blocked_account boolean default false 
+);
+
+
+
 --
 -- TOC entry 3427 (class 0 OID 0)
 -- Dependencies: 223
